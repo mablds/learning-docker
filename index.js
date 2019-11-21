@@ -1,14 +1,8 @@
-const express = require('express');
-
-// Constants
+const config = require('./config/config.js')
 const PORT = 8080;
+const app = config.setUp();
 
-// App
-const app = express();
-app.get('/', (req, res) => {
-  res.send('Hello world\n');
-  console.log('Hello World\n')
-});
-
-app.listen(PORT);
+app.listen(PORT, () => {
+    console.log(` --------------------------------------------\n|              SERVER ON!                   |\n|      Running on http://localhost:${PORT}     |\n --------------------------------------------`)
+})
 console.log(`Running on http://localhost:${PORT}`);
