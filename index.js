@@ -1,8 +1,14 @@
 const express = require('express');
+
+// Constants
+const PORT = 8080;
+
+// App
 const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello world\n');
+  console.log('Hello World\n')
+});
 
-app.get('/', ()=> {
-    console.log('Hello World');
-})
-
-app.listen(3000)
+app.listen(PORT);
+console.log(`Running on http://localhost:${PORT}`);
