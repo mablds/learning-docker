@@ -1,11 +1,13 @@
 
 
-module.exports.byId = async(req, res) => {
-   // try {
-        const consultant = req.params.id;
-        
-        res.status(200).json({"hehe":"hihi"});
-   // } catch {
-   //     res.status(500).send('Internal Error')
-   // }
+module.exports.byId = (req, res) => {
+   
+   res.status(200).json(
+      {
+         "id" : req.params.id,
+	      "day": req.body.day,
+	      "month": req.body.month,
+	      "year": req.body.year
+      }
+   );
 }
