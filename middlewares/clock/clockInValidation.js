@@ -1,15 +1,11 @@
 module.exports = (req, res, next) => {
-    //new Date('YYYY-MM-DD')
     if (!req.body.day || !req.body.month || !req.body.year) {
         return res.status(400).send('Informações inválidas');
     } else {
-        const clockInReq = new Date(`${req.body.year}-${req.body.month}-${req.body.day}`);
+        const clockInReq = new Date(req.body.year, (req.body.month - 1), req.body.day); //new Date(YYYY, MM, DD) => Month - 1 because date.month is 0-indexed (0-11 / Jan-Dec);
         const clockServer = new Date();
         
-        //console.log('wat'+clockServer.getUTCDay());
-        console.log(Date.now());
-
-        if(!clockInReq < clockServer || !clockServer < clockInReq) {
+        if(clockInReq.getDate() === clockServer.getDate() && clockInReq.getMonth() === clockServer.getMonth() && clockInReq.getFullYear() === clockServer.getFullYear()) {
             next();
         } else {
             return res.status(400).send('Data de entrada inválida. ');
